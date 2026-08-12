@@ -1,21 +1,194 @@
-<!DOCTYPE html>
-<html>
+=<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gold Trading</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0b0f14, #151b24, #080b10);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #d4af37, #f5d76e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+        }
+
+        .icon span {
+            font-size: 30px;
+            color: #111;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            letter-spacing: 0.3px;
+        }
+
+        .countdown {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 3px solid rgba(212, 175, 55, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.12);
+        }
+
+        .countdown::before {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #d4af37;
+            animation: spin 1s linear infinite;
+        }
+
+        .number {
+            font-size: 64px;
+            font-weight: 800;
+            color: #f5d76e;
+            line-height: 1;
+            text-shadow: 0 0 25px rgba(245, 215, 110, 0.35);
+            animation: pop 1s ease;
+        }
+
+        .message {
+            font-size: 15px;
+            color: #aeb6c2;
+            margin-top: 10px;
+        }
+
+        .channel {
+            margin-top: 18px;
+            font-size: 14px;
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.6);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<script>
-    Telegram.WebApp.ready();
+    <div class="container">
 
-    setTimeout(function () {
-        Telegram.WebApp.openTelegramLink("https://t.me/Gold1_tfx");
-    }, 1000);
-</script>
+        <div class="icon">
+            <span>G</span>
+        </div>
+
+        <div class="title">
+            Redirecting...
+        </div>
+
+        <div class="countdown">
+            <div class="number" id="countdown">3</div>
+        </div>
+
+        <div class="message">
+            Please wait while we connect you
+        </div>
+
+        <div class="channel">
+            Gold Trading Channel
+        </div>
+
+    </div>
+
+    <script>
+        Telegram.WebApp.ready();
+
+        let count = 3;
+        const countdownElement = document.getElementById("countdown");
+
+        const timer = setInterval(function () {
+
+            count--;
+
+            if (count > 0) {
+                countdownElement.textContent = count;
+
+                // Restart animation
+                countdownElement.style.animation = "none";
+                void countdownElement.offsetWidth;
+                countdownElement.style.animation = "pop 1s ease";
+            }
+
+            if (count === 0) {
+                clearInterval(timer);
+
+                countdownElement.textContent = "✓";
+
+                setTimeout(function () {
+                    Telegram.WebApp.openTelegramLink(
+                        "https://t.me/Gold1_tfx"
+                    );
+                }, 300);
+            }
+
+        }, 1000);
+    </script>
 
 </body>
 </html>
