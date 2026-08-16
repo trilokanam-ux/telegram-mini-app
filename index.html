@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
     <style>
         * {
             box-sizing: border-box;
@@ -63,18 +61,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-        }
-
-        .circle::before {
-            content: "";
-            position: absolute;
-            width: 125px;
-            height: 125px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #d4af37;
-            animation: spin 0.7s linear infinite;
         }
 
         #number {
@@ -95,12 +81,6 @@
             font-size: 14px;
             font-weight: bold;
         }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
     </style>
 </head>
 
@@ -110,45 +90,38 @@
 
     <div class="logo">G</div>
 
-    <div class="title">
-        Redirecting...
-    </div>
+    <div class="title">Redirecting...</div>
 
     <div class="circle">
         <div id="number">3</div>
     </div>
 
-    <div class="message">
-        Please wait...
-    </div>
+    <div class="message">Please wait...</div>
 
-    <div class="channel">
-        Gold Trading Channel
-    </div>
+    <div class="channel">Gold Trading Channel</div>
 
 </div>
 
 <script>
 
-    Telegram.WebApp.ready();
-
     const number = document.getElementById("number");
 
-    // Fast countdown
-    setTimeout(() => {
+    setTimeout(function () {
         number.innerText = "2";
     }, 700);
 
-    setTimeout(() => {
+    setTimeout(function () {
         number.innerText = "1";
     }, 1400);
 
-    // Immediately open channel
-    setTimeout(() => {
+    setTimeout(function () {
 
-        Telegram.WebApp.openTelegramLink(
-            "https://t.me/+RD4oOWbh9xZhZDU1"
-        );
+        /*
+         * TEST:
+         * Instead of Telegram.WebApp.openTelegramLink(),
+         * navigate directly to the Telegram channel.
+         */
+        window.location.href = "https://t.me/Gold1_tfx";
 
     }, 2100);
 
