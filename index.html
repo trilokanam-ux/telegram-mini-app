@@ -1,131 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Redirecting</title>
 
     <style>
         * {
             box-sizing: border-box;
         }
 
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-        }
-
         body {
-            background: linear-gradient(135deg, #080b10, #151b24);
-            color: white;
+            margin: 0;
+            min-height: 100vh;
+            background: #071027;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #ffffff;
+        }
+
+        .card {
+            width: calc(100% - 40px);
+            max-width: 360px;
+            background: #1d2d49;
+            border-radius: 28px;
+            padding: 32px 22px 28px;
             text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
         }
 
-        .container {
-            width: 100%;
-            padding: 25px;
-        }
-
-        .logo {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 22px;
+        .loader {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 24px;
+            border: 7px solid #405174;
+            border-top-color: #756cff;
+            border-right-color: #756cff;
             border-radius: 50%;
-            background: linear-gradient(145deg, #d4af37, #f5d76e);
-            display: flex;
-            justify-content: center;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .count {
+            display: inline-flex;
             align-items: center;
-            font-size: 30px;
-            font-weight: bold;
-            color: #111;
-            box-shadow: 0 0 30px rgba(212,175,55,0.3);
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 22px;
-        }
-
-        .circle {
-            width: 125px;
-            height: 125px;
-            margin: auto;
-            border-radius: 50%;
-            border: 3px solid rgba(212,175,55,0.25);
-            display: flex;
             justify-content: center;
-            align-items: center;
+            min-width: 34px;
+            height: 32px;
+            padding: 0 8px;
+            margin: 0 3px;
+            border-radius: 10px;
+            background: #405d89;
+            font-size: 18px;
         }
 
-        #number {
-            font-size: 62px;
-            font-weight: bold;
-            color: #f5d76e;
+        .divider {
+            height: 1px;
+            background: #34435c;
+            margin: 25px 0;
         }
 
         .message {
-            margin-top: 22px;
-            color: #aeb6c2;
-            font-size: 14px;
+            margin: 0 0 25px;
+            color: #91a0b8;
+            font-size: 15px;
         }
 
-        .channel {
-            margin-top: 12px;
-            color: #d4af37;
+        .redirect-button {
+            display: block;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 30px;
+            background: #2b86f5;
+            color: #ffffff;
+            text-decoration: none;
             font-size: 14px;
             font-weight: bold;
+        }
+
+        .redirect-button:active {
+            transform: scale(0.98);
+        }
+
+        .secure {
+            margin-top: 24px;
+            color: #7f8da5;
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+    <div class="card">
 
-    <div class="logo">G</div>
+        <div class="loader"></div>
 
-    <div class="title">Redirecting...</div>
+        <h2>
+            Redirecting
+            <span class="count" id="count">2</span>
+            s
+        </h2>
 
-    <div class="circle">
-        <div id="number">3</div>
+        <div class="divider"></div>
+
+        <p class="message">Redirecting...</p>
+
+        <a id="redirectButton" class="redirect-button" href="https://t.me/+bpkQZtwGPEs5M2M1">
+            ⚡️ Click here if not redirected
+        </a>
+
+        <div class="divider"></div>
+
+        <div class="secure">
+            🔒 secure connection
+        </div>
+
     </div>
 
-    <div class="message">Please wait...</div>
+    <script>
+        const destination = "https://t.me/+bpkQZtwGPEs5M2M1";
 
-    <div class="channel">Gold Trading Channel</div>
+        let seconds = 2;
 
-</div>
+        const counter = document.getElementById("count");
 
-<script>
+        const timer = setInterval(function () {
 
-    const number = document.getElementById("number");
+            seconds--;
 
-    setTimeout(function () {
-        number.innerText = "2";
-    }, 700);
+            counter.textContent = seconds;
 
-    setTimeout(function () {
-        number.innerText = "1";
-    }, 1400);
+            if (seconds <= 0) {
+                clearInterval(timer);
 
-    setTimeout(function () {
+                window.location.href = destination;
+            }
 
-        /*
-         * TEST:
-         * Instead of Telegram.WebApp.openTelegramLink(),
-         * navigate directly to the Telegram channel.
-         */
-        window.location.href = "https://t.me/Gold1_tfx";
-
-    }, 2100);
-
-</script>
+        }, 1000);
+    </script>
 
 </body>
+
 </html>
